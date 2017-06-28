@@ -1,0 +1,10 @@
+{
+  "name": "algo",
+  "author": "Mikhail Shustov <restrry@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {},
+  "scripts": {},
+  "dependencies": {
+    "chai": "^4.0.2"
+  }
+}
