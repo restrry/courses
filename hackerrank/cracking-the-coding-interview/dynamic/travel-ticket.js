@@ -27,8 +27,10 @@ function calcCostByDay(travelDates){
     const costByDay = Array(daysInMonth + 1).fill(0);
     for (let i = 1; i < costByDay.length; i++){
         costByDay[i] = Math.min(
+            // to optimise search with includes we can switch from array to hash
+            // day
             costByDay[i - 1] + (travelDates.includes(i) ? dayPrice : 0),
-            // look up back for a week
+            // week
             i - daysInWeek >= 0 ? costByDay[i - daysInWeek] + weekPrice : Infinity
         );
     }
@@ -48,12 +50,12 @@ function regenerateAnswer(costByDay){
     }
 
     while(i > 0){
-        if(costByDay[i] - costByDay[i-1] === dayPrice){
+        if(costByDay[i] - costByDay[i - 1] === dayPrice){
             res.unshift({day: i, price: dayPrice});
             i--;
-        } else if(costByDay[i] !== costByDay[i-1]){
-            res.unshift({day: i - 6, price: weekPrice});
-            i -= 7;
+        } else if(costByDay[i] !== costByDay[i - 1]){
+            res.unshift({day: i - daysInWeek + 1, price: weekPrice});
+            i -= daysInWeek;
         } else {
             i--;
         }
