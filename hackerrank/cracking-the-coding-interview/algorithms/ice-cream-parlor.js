@@ -15,7 +15,7 @@ const calcMiddleIdx = (l, r) => l + Math.floor((r - l) / 2);
 function binarySearch(value, arr){
     let l = -1;
     let r = arr.length - 1;
-    while(r - l > 1){
+    while(l <= r){
         let m = calcMiddleIdx(l ,r);
         if(arr[m] === value) {
             return m;
