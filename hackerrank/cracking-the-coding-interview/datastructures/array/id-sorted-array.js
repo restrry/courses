@@ -1,6 +1,6 @@
 function isSorted(arr, comparator = (a, b) => a < b){
     let i = arr.length - 1;
-    while(i > 0) {
+    while(i) {
         if(comparator(arr[i], arr[i - 1])){
             return false;
         }
