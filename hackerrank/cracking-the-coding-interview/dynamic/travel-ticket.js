@@ -14,7 +14,7 @@ const setLast = (arr, value) => {
 
 function calcMinCostFor(days){
     const costByDay = calcCostByDay(days);
-    const purchasesByDays = regenerateAnswer(costByDay);
+    const purchasesByDays = regeneratePurchases(costByDay);
 
     return {
         cost: last(costByDay),
@@ -28,19 +28,21 @@ function calcCostByDay(travelDates){
     for (let i = 1; i < costByDay.length; i++){
         costByDay[i] = Math.min(
             // to optimise search with includes we can switch from array to hash
-            // day
+            // but if by description we don't care about perf
+            // check for a day
             costByDay[i - 1] + (travelDates.includes(i) ? dayPrice : 0),
-            // week
+            // check for a week
             i - daysInWeek >= 0 ? costByDay[i - daysInWeek] + weekPrice : Infinity
         );
     }
 
+    // check for a month
     setLast(costByDay, Math.min(last(costByDay), monthPrice));
 
     return costByDay;
 }
- 
-function regenerateAnswer(costByDay){
+
+function regeneratePurchases(costByDay){
     const res = [];
     let i = costByDay.length - 1;
 
@@ -60,6 +62,7 @@ function regenerateAnswer(costByDay){
             i--;
         }
     }
+
     return res;
 }
 
