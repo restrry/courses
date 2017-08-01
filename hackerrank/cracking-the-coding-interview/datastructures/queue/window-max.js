@@ -1,9 +1,9 @@
+const _head = arr => arr.length ? arr[0] : null;
+const _tail = arr => arr.length ? arr[arr.length - 1] : null;
+
 function Queue(){
     this.store = [];
 }
-
-const _head = arr => arr.length ? arr[0] : null;
-const _tail = arr => arr.length ? arr[arr.length - 1] : null;
 
 Queue.prototype.isEmpty = function isEmpty(){
     return this.store.length === 0;
@@ -66,25 +66,18 @@ function findSlidingMinimum(arr, windowSize){
     return min;
 }
 
-// findSlidingMinimum([1, 2, 3, 4, -7, 8, 3], 3); // ?
-findSlidingMinimum([33, 11, 44, 11, 55], 1); // ?
-findSlidingMinimum([33, 11, 44, 11, 55], 2); // ?
-findSlidingMinimum([33, 11, 44, 11, 55], 3); // ?
-findSlidingMinimum([33, 11, 44, 11, 55], 4); // ?
-findSlidingMinimum([33, 11, 44, 11, 55], 5); // ?
-
-var input = `5 5
-1 2 3 4 5
-1
-2
-3
-4
-5`; 
-
-// let [arr, ...d] = input.split('\n').slice(1); // ?
-// arr = arr.split(' ').map(Number); // ?
-// d = d.map(Number); // ?
-
-// d.forEach(d => {
-//     console.log(findSlidingMinimum(arr, d));
-// }); //?
+console.assert(
+    findSlidingMinimum([33, 11, 44, 11, 55], 1) === 11
+);
+console.assert(
+    findSlidingMinimum([33, 11, 44, 11, 55], 2) === 33
+);
+console.assert(
+    findSlidingMinimum([33, 11, 44, 11, 55], 3) === 44
+);
+console.assert(
+    findSlidingMinimum([33, 11, 44, 11, 55], 4) === 44
+);
+console.assert(
+    findSlidingMinimum([33, 11, 44, 11, 55], 5) === 55
+);
