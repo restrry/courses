@@ -62,9 +62,8 @@ function calcLongestSeq2(arr){
             cache[0] = arr[i];
         // the second case - attach a largest element to a sequence
         } else if (arr[i] > tail(cache)){
-            // console.log('-->', ++j);
             cache.push(arr[i]);
-        // the third case - find largest element that is smaller that current and replace it
+        // the third case - find largest element that is smaller than the current and replace it
         } else {
             const indexForInsertion = findLeftmostPositionForInsertion(cache, arr[i]);
             cache[indexForInsertion] = arr[i];
