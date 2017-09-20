@@ -67,3 +67,49 @@ on3 op f x y z = op (f x) (f y) (f z)
 
 sum3squares = (\x y z -> x+y+z) `on3` (^2)
 -- sum3squares 1 2 3 ~> 14
+
+-- f :: b -> c
+-- g :: a -> b
+-- compose f g = \x -> f (g x)
+-- :t compose ~> compose :: a -> c
+-- with compose function (.)
+sumFstFst3 = (+) `on` (fst . fst)
+
+-- doIt x = f (g (h x))
+-- doIt = f . g . h
+
+-- https://stepik.org/lesson/12398/step/3?unit=2828
+doItYourself = f . g . h
+f = logBase 2
+g = (^ 3)
+h = max 42
+
+-- :t [True, False] ~> [Bool]
+-- :t "ABC" ~> [Char]
+-- :t [] ~> []
+-- :t (++) ~> [a] -> [a] -> [a]
+-- :t (:) ~> a -> [a] -> [a]
+
+-- tuple prefix style
+(,) True 3
+-- :t (,) ~> (,) :: ~> a -> b -> (a, b)
+-- mixfix style
+(True, 3)
+
+dup x = (x, x)
+-- :t dup ~> dup :: t -> (t, t)
+
+-- curry
+cur f x y = f (x, y)
+-- :t cur ~> cur :: ((t1, t2) -> t) -> t1 -> t2 -> t
+-- :t curry ~> curry :: ((a, b) -> c) -> a -> b -> c
+-- :t uncurry ~> uncurry :: (a -> b -> c) -> (a, b) -> c
+-- curry id ~> (,)
+-- uncurry (flip const) ~> snd
+
+-- https://stepik.org/lesson/12398/step/9?unit=2828
+-- swap (1,'A') ~> ('A',1)
+swap = f (g h)
+f = uncurry
+g = flip
+h = (,)
