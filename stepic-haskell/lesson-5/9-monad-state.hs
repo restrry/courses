@@ -51,3 +51,15 @@ modify f = do
 -- writerToState :: Monoid w => Writer w a -> State w a
 -- writerToState m = state $ \st -> (a, st `mappend` w)
 --     where (a, w) = runWriter m
+
+succ' :: Int -> Int
+succ' n = execState tick n
+
+plus :: Int -> Int -> Int
+plus n x = execState (sequence $ replicate n tick) x
+
+replicateM :: (Monad m) => Int -> m a -> m [a]
+replicateM n = sequnce . replicate n
+
+plus' :: Int -> Int -> Int
+plus' n x = execState (replicateM n tick) x
